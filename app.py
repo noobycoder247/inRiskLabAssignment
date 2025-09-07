@@ -120,4 +120,3 @@ def weather_file_content(filename):
 
     file_content = bucket_helper.read_json(cloud_file_path)
     return jsonify({'msg': 'Content fetched successfully', 'content': file_content, 'filename': filename}), 200
-
