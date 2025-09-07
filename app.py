@@ -121,6 +121,3 @@ def weather_file_content(filename):
     file_content = bucket_helper.read_json(cloud_file_path)
     return jsonify({'msg': 'Content fetched successfully', 'content': file_content, 'filename': filename}), 200
 
-
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8080, debug=True)
