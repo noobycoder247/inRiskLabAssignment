@@ -27,7 +27,7 @@ if not os.path.exists(os.path.join(abs_path, LOCAL_FOLDER_NAME)):
 
 @app.route('/', methods=['GET'])
 def home():
-    return jsonify({'msg': 'Hello World'})
+    return jsonify({'msg': 'Everything looks healthy!'})
 
 
 @app.route('/store-weather-data', methods=['POST'])
@@ -56,7 +56,6 @@ def store_weather_data():
         response = requests.get(url, params)
         response.raise_for_status()
         weather_data = response.json()
-        print(weather_data)
         for field in ['daily', 'daily_units']:
             if field not in weather_data:
                 return jsonify({'error': f'Unexpected weather API response format, {field} field not present'}), 500
@@ -120,3 +119,7 @@ def weather_file_content(filename):
 
     file_content = bucket_helper.read_json(cloud_file_path)
     return jsonify({'msg': 'Content fetched successfully', 'content': file_content, 'filename': filename}), 200
+
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=8080)
